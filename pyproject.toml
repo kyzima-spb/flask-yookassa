@@ -1,5 +1,5 @@
 [project]
-name = "flask-yookassa"
+name = "Flask-Yookassa"
 description = "Integration of Flask and YuKassa."
 license = {text = "MIT License"}
 authors = [
