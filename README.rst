@@ -28,6 +28,33 @@ Option                                       Description
                                              from which hook calls are allowed. By default: `set()`.
 =========================================    ================================================================
 
+Custom error handler
+--------------------
+
+You can register your Kassa API error handler.
+For example, display a standard Flask page for HTTP errors:
+
+.. code-block:: python
+
+    from flask import Flask, abort
+    from flask_yookassa import Yookassa
+
+
+    app = Flask(__name__)
+    app.config.from_prefixed_env()
+    yookassa = Yookassa(app)
+
+
+    @yookassa.errorhandler
+    def handle_api_error(resp, code):
+        """
+        Registers a custom error handler for the ЮKassa API.
+        """
+        abort(code, resp['description'])
+
+Only HTTPException will be caught and handled automatically,
+other exception types need to be handled manually.
+
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/flask-yookassa.svg
    :target: https://pypi.org/project/flask-yookassa/

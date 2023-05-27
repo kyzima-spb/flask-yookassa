@@ -23,6 +23,7 @@ from yookassa import Configuration, Deal, Payment, Refund
 from yookassa.domain.common.user_agent import Version
 from yookassa.domain.exceptions import ApiError
 from yookassa.domain.notification import WebhookNotificationFactory
+from werkzeug.exceptions import HTTPException
 
 
 __all__ = ('Yookassa',)
@@ -152,7 +153,10 @@ class Yookassa:
         if self._handle_error_callback is None:
             return resp, code
 
-        return self._handle_error_callback(resp, code)
+        try:
+            return self._handle_error_callback(resp, code)
+        except HTTPException as err:
+            return current_app.handle_http_exception(err)
 
     def hookhandler(self, func: V) -> V:
         @wraps(func)
