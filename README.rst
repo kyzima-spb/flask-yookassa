@@ -22,11 +22,12 @@ The following configuration options are available to specify:
 =========================================    ================================================================
 Option                                       Description
 =========================================    ================================================================
-`YOOKASSA_SHOP_ID`                           **Required**. Store ID issued by ЮKassa.
-`YOOKASSA_SHOP_SECRET_KEY`                   **Required**. The secret key of the store, issued by ЮKassa.
-`YOOKASSA_NOTIFICATIONS_IP`                  A set of IP addresses or masks
+``YOOKASSA_SHOP_ID``                         **Required**. Store ID issued by ЮKassa.
+``YOOKASSA_SHOP_SECRET_KEY``                 **Required**. The secret key of the store, issued by ЮKassa.
+``YOOKASSA_NOTIFICATIONS_IP``                A set of IP addresses or masks
                                              from which hook calls are allowed. By default: `set()`.
 =========================================    ================================================================
+
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/flask-yookassa.svg
    :target: https://pypi.org/project/flask-yookassa/
