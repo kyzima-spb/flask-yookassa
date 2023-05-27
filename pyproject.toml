@@ -1,0 +1,54 @@
+[project]
+name = "flask-yookassa"
+description = "Integration of Flask and YuKassa."
+license = {text = "MIT License"}
+authors = [
+    {name = "Kirill Vercetti", email = "office@kyzima-spb.com"},
+]
+readme = "README.rst"
+requires-python = ">=3.7"
+dependencies = [
+    'Flask>=1.0',
+    'yookassa>=2',
+]
+dynamic = ["version"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Framework :: Flask",
+    "Development Status :: 3 - Alpha",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+
+[project.urls]
+Homepage = "https://github.com/kyzima-spb/flask-yookassa/"
+Repository = "https://github.com/kyzima-spb/flask-yookassa.git"
+"Bug Tracker" = "https://github.com/kyzima-spb/flask-yookassa/issues/"
+
+[project.optional-dependencies]
+dev = [
+    'mypy',
+]
+
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+fallback_version = "0.0.0"
+
+[tool.mypy]
+files = ["flask_yookassa"]
+python_version = "3.7"
+strict = true
+disallow_subclassing_any = false
+
+[[tool.mypy.overrides]]
+module = [
+    "yookassa.*",
+]
+ignore_missing_imports = true
