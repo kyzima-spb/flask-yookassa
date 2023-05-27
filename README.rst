@@ -56,7 +56,7 @@ other exception types need to be handled manually.
 Notifications handler
 ---------------------
 
-Any entry point can be decorated with a special :py:meth:`~flask_yookassa.Yookassa.hookhandler` decorator.
+Any entry point can be decorated with a special ``flask_yookassa.Yookassa.hookhandler`` decorator.
 
 The decorator checks the request for spam. The request must come from allowed IP addresses,
 the resource is checked for existence and for the relevance of the status:
