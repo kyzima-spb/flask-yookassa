@@ -31,7 +31,7 @@ Option                                       Description
 Custom error handler
 --------------------
 
-You can register your Kassa API error handler.
+You can register your ЮKassa API error handler.
 For example, display a standard Flask page for HTTP errors:
 
 .. code-block:: python
@@ -47,13 +47,37 @@ For example, display a standard Flask page for HTTP errors:
 
     @yookassa.errorhandler
     def handle_api_error(resp, code):
-        """
-        Registers a custom error handler for the ЮKassa API.
-        """
+        """Registers a custom error handler for the ЮKassa API."""
         abort(code, resp['description'])
 
 Only HTTPException will be caught and handled automatically,
 other exception types need to be handled manually.
+
+Notifications handler
+---------------------
+
+Any entry point can be decorated with a special :py:meth:`~flask_yookassa.Yookassa.hookhandler` decorator.
+
+The decorator checks the request for spam. The request must come from allowed IP addresses,
+the resource is checked for existence and for the relevance of the status:
+
+.. code-block:: python
+
+    from flask import Flask
+    from flask_yookassa import Yookassa
+
+
+    app = Flask(__name__)
+    app.config.from_prefixed_env()
+    yookassa = Yookassa(app)
+
+
+    @app.route('/callback')
+    @yookassa.hookhandler
+    def handle_hook(notification):
+        """The entry point handles the ЮKassa notifications."""
+        # Any code to handle the event.
+        return ''
 
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/flask-yookassa.svg
